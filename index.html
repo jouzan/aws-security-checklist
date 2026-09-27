@@ -1,0 +1,524 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- displays site properly based on user's device -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300;500&display=swap" rel="stylesheet">
+	<title>ListBox</title>
+</head>
+<body>
+	<div class="flex-container">
+		<div class="header-container">
+			<span class="header">
+				<font size="15">RAISE YOUR SECURITY POSTURE ON AWS - SECURITY CHECKLIST</font>
+			</span>
+		</div>
+		<table>
+			<tr>
+				<td class="section-header" colspan="5">
+					<br />&nbsp;(1 OF 4) STEPS TO PROTECT YOUR AWS ACCOUNT
+					<button class="btn all">Select All</button>
+				</td>
+			</tr>
+			<tr>
+				<th class="table-header">ITEM</th>
+				<th class="table-header"><center>COMPLEXITY</center></th>
+				<th class="table-header"><center>COST</center></th>
+				<th class="table-header"><center>STATUS</center></th>
+				<th class="table-header"><center>SCORE</center></th>
+			</tr>
+			<tr>
+				<td> 1) Multi AWS account strategy with no running workloads on payer account</td>
+				<td>MEDIUM</td>
+				<td>$ *</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">20</td>
+			</tr>
+			<tr>
+				<td> 2) Root user MFA + delete root user ssh default keys <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-mfa.html" target="_blank"><font size="2">here</font></a></td>
+				<td>EASY *</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">20</td>
+			</tr>
+			<tr>
+				<td> 3) Enabled Organization <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tutorials_basic.html" target="_blank"><font size="2">here</font></a></td>
+				<td>EASY</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td>
+				4) Enable SSO <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/step1.html" target="_blank"><font size="2">here</font></a></td>
+                <td>MEDIUM</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">15</td>
+			</tr>
+                        <tr>
+				<td> 
+                                5) Using SCP to restriced specific services/regions <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"                                     target="_blank">
+				<font size="2">here </font>
+				</td>
+				<td>MEDIUM *</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">10</td>
+			<tr>
+				<td> 6) Delete unused default VPC's cross all regions </td>
+				<td>EASY</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 7) Enable Cloudtrail + Log Archiving account <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html" target="_blank"><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+					<td><input type="checkbox"/></td>
+				<td class="scr">10</td>
+			</tr>
+			<tr>
+				<td> 8) Enable CONFIG <a href="https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html" target="_blank"><font size="2">here</font></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">15</td>
+			</tr>
+			<tr>
+				<td> 9) Enable Guardduty <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html" target="_blank"><font size="2">here</font></a></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">15</td>
+			</tr>
+			<tr>
+				<td>
+				10) IAM password settings hardening <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html" target="_blank">
+			        <font size="2">here </font>
+				</td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 11) Enable IAM Analyzer <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html" target="_blank"><font size="2">here</font></a></td>
+				<td>EASY</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 12) IAM Policy review for least privileges strategy </td>
+				<td>MEDIUM</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 13) IAM Review all keys / old and unused / rotate <a href="https://aws.amazon.com/blogs/security/how-to-rotate-access-keys-for-iam-users/" target="_blank"><font size="2">here </font></a></td>
+				<td>MEDIUM *</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">15</td>
+			</tr>
+                        <tr>
+				<td> 14) Enable Trusted Advisor <a href="https://aws.amazon.com/premiumsupport/technology/trusted-advisor/" target="_blank"><font size="2">here </font></a></td>
+				<td>EASY</td>
+				<td> *</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 15) Enable Security HUB <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-enable.html#securityhub-enable-console" target="_blank"><font size="2">here </font></a></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">20</td>
+			</tr>
+
+				
+			<tr>
+				<td class="section-header" colspan="5"><br />&nbsp;(3 OF 4) STEPS TO PROTECT YOUR NETWORK</td>
+			</tr>
+			<tr>
+				<th class="table-header">ITEM</th>
+				<th class="table-header"><center>COMPLEXITY</center></th>
+				<th class="table-header"><center>COST</center></th>
+				<th class="table-header"><center>STATUS</center></th>
+				<th class="table-header"><center>SCORE</center></th>
+			</tr>
+			<tr>
+				<td> 1) Deploy workloads [EC2/ECS/EKS/RDS] in Private subnet protected by NAT GW</td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 2) Evaluate VPC SG & Network ACL</td>
+				<td>EASY *</td>
+				<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 3) Use VPN Client for SSH/RDP session <a href="https://aws.amazon.com/vpn/client-vpn/" target="_blank"><font size="2">here</font></td>
+				<td>MEDIUM</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">15</td>
+			</tr>
+			<tr>
+				<td> 4) Use AWS SSM Session manager for RDP/SSH via HTTPS <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html" target="_blank"><font size="2">here</font></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 5) Enable VPC ENDPOINTS in every VPC for every Service possible <a href="https://wa.aws.amazon.com/wellarchitected/2020-07-02T19-33-23/wat.concept.vpc-endpoint.en.html" target="_blank"><font size="2">here</font></td>
+				<td>MEDIUM</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 6) Use FW for egress traffic monitoring and enforcement <a href="https://aws.amazon.com/blogs/networking-and-content-delivery/deployment-models-for-aws-network-firewall/" target="_blank"><font size="2">here</font></td>
+				<td>HIGH</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">10</td>
+			</tr>
+			<tr>
+				<td> 7) Use AWS Inspector to test vulnerability for EC2 and Containers images in EDR <a href="https://aws.amazon.com/inspector/" target="_blank"><font size="2">here</font></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 8)  Enable VPC FLOWLOGS <a href="-https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html"><font size="2">here</font></td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 9) Control network flow /traffic between accounts using TGW ,  SG , routes <a href=""><font size="2">here</font></td>
+					<td>HIGH</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+		  	<td> 
+
+	                 <tr>
+				<td class="section-header" colspan="5"><br />&nbsp;(2 OF 4) STEPS TO PROTECT YOUR DATA</td>
+			</tr>
+			<tr>
+				<th class="table-header">ITEM</th>
+				<th class="table-header"><center>COMPLEXITY</center></th>
+				<th class="table-header"><center>COST</center></th>
+				<th class="table-header"><center>STATUS</center></th>
+				<th class="table-header"><center>SCORE</center></th>
+			</tr>
+			<tr>
+				<td> 1) Enable Encryption at rest with KMS for all data services [EBS, S3, RDS, DYNAMODB, EFS, FSX] </td>
+				<td>EASY *</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 2) Enable backup/snapshots on Important data [RDS, EBS, EFS, S3]</td>
+				<td>MEDIUM</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 3) Check for public facing snapshots for RDS, EBS, S3 </td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+ 				<td> 4) Consider using MACIE to protect against PII data leak <a href="https://docs.aws.amazon.com/macie/latest/user/getting-started.html" target="_blank"><font size="2">here </font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 5) Enable Access Logs for every S3 Bucket <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html" target="_blank"><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">10</td>
+			</tr>
+			<tr>
+				<td> 6) S3 Replication to a DR account/region <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html" target="_blank"><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+			<tr>
+				<td> 7) Enable MFA requierments for Delete S3 Data ---FREE--- <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html" target="_blank"><font size="2">here</font></td>
+					<td>EASY *</td>
+					<td>FREE</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">4</td>
+			</tr>
+
+
+			
+			<tr>
+				<td class="section-header" colspan="5"><br />&nbsp;(4 OF 4) STEPS TO PROTECT YOUR SERVICE/APPLICATION</td>
+			</tr>
+			<tr>
+				<th class="table-header">ITEM</th>
+				<th class="table-header"><center>COMPLEXITY</center></th>
+				<th class="table-header"><center>COST</center></th>
+				<th class="table-header"><center>STATUS</center></th>
+				<th class="table-header"><center>SCORE</center></th>
+			</tr>
+			<tr>
+				<td> 1) Enable WAF with Cloudfront, ALB, API GW <a href="https://docs.aws.amazon.com/waf/latest/developerguide/getting-started.html#getting-started-aws-account" target="_blank"><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">20</td>
+			</tr>
+			<tr>
+				<td> 2) Use CloudFront <a href=""><font size="2">here</font></td>
+					<td>MEDIUM</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">20</td>
+			</tr>
+			<tr>
+				<td> 3) Enable Shield advanced for additional DDOS protection <a href=""><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">5</td>
+			</tr>
+			<tr>
+				<td> 4) Setup VPC Network-Firewall to control network traffic - Egress/Ingress <a href="https://aws.amazon.com/network-firewall/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc"><font size="2">here</font></td>
+					<td>MEDIUM</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>    
+				<td class="scr">10</td>
+			</tr>
+			<tr>
+				<td> 5) Deploy your application instances [BD/Web/App] in a private subnet</td>
+				<td>EASY</td>
+				<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">10</td>
+			</tr>
+			<tr>
+				<td> 6) Consider using PrivatLink for Inter AWS traffic <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-privatelink.html" target="_blank"><font size="2">here</font></td>
+					<td>EASY</td>
+					<td>$</td>
+				<td><input type="checkbox"/></td>
+				<td class="scr">0</td>      
+			</tr>
+		</table>
+		<br />
+		<button class="btn calc">Calculate</button>
+		<br />
+		<div class="total">TOTAL SCORE</div>
+		<div class="result">0</div>
+		<br>
+	</div>
+</body>
+
+</html>
+<style>
+body , *{
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+	font-family: 'Akshar', sans-serif;
+	font-weight:500;
+}
+html{
+	width:100%; 
+	overflow-x:hidden;
+}
+body{
+	width:100%;
+	background: lightgray;  /* fallback for old browsers */
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	min-height:100%;
+}
+.flex-container{
+	width:100%; 
+	min-height:100%;
+	padding-top:5%; 
+	padding-bottom:5%; 
+	display:flex; 
+	flex-direction:column; 
+	justify-content:space-around; 
+	align-items:center;
+}
+table{
+	color:black; 
+	background:#F8F0E3;
+	min-width:85%; 
+	border-collapse:collapse; 
+	height:65%;
+}
+td,th{
+	border:1px solid black; 
+	text-align:left; 
+	padding:10px;
+}
+td:nth-child(2){
+	text-align:center;
+}
+td:nth-child(3){
+	text-align:center;
+}
+td:nth-child(4){
+	text-align:center;
+}
+th:nth-child(1){
+	width:75%;
+}
+input[type="checkbox"]{
+	padding:10px;
+	color:white;
+	/* Styling checkbox */
+	width:16px; 
+	height:16px;
+}
+input[type="checkbox"]:checked {
+	-webkit-accent-color:#14dd14;
+	accent-color:#14dd14;
+}
+tr > td:last-child{
+	padding:0px !important;
+}
+tr:nth-child(even) {
+	background: #ecf0f1;
+}
+input[type="text"]:focus{
+	outline:0px; 
+	border:2.0px solid #4bb143;
+}
+input[type="text"]:active{
+	outline:0px; 
+	border:2.0px solid #4bb143;
+}
+.table-header {
+	font-size: 20px;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	background-color: lightgray;
+}
+.section-header {
+	font-size: 18pt;
+	color: red;
+	border-right: 0px;
+	border-left: 0px;
+	border-color: lightgray;
+	background-color: lightgray;
+}
+.header-container {
+	min-width:85%;
+	text-align: right;
+}
+.header {
+	margin-top: 30px;
+	float: left;
+	color: red;
+	font-size: 40px;
+}
+.btn{
+	background:#3498db;
+	color:white;
+	padding:10px;
+	font-size:18px;
+	border:none;
+	cursor:pointer;
+	border-radius:6px;
+	width: 150px;
+	float: right;
+}
+.total {
+	color: black;
+	font-size: 40px;
+}
+.result {
+	color: black;
+	font-size: 40px;
+	padding: 5px;
+}
+.scr {
+	text-align: center;
+}
+</style>
+<script>
+let table = document.querySelector("table");
+
+let checkbox = document.querySelectorAll("input[type='checkbox']");
+let score = document.querySelectorAll(".scr");
+//let text= document.querySelectorAll("input[type='text']");
+let btn = document.querySelector(".calc");
+let btn_2 = document.querySelector(".all");
+let result = document.querySelector(".result");
+//listening for select all event to check all items
+btn_2.addEventListener("click",()=>{
+	for(n=0; n < checkbox.length; n++){
+		checkbox[n].checked = true;
+	}
+})
+
+btn.addEventListener("click",()=>{
+	let sum=0;
+	let allSum=0;
+
+	for(i=0; i < checkbox.length; i++){
+		allSum+=parseInt(score[i].textContent);
+	}
+
+	for(i=0; i < checkbox.length; i++){
+		if(checkbox[i].checked == true){
+			if(isNaN(parseInt(score[i].textContent))){
+				alert(`item ${i+1} should be numeric`)
+			}
+			else{
+				sum+=parseInt(score[i].textContent);
+			}
+		}
+		else{
+			continue;
+		}
+	}
+	console.log(sum);
+	result.textContent = sum + " out of " + allSum;
+	// adjusting result color depending on score
+	if(sum >= 200){
+		result.style="background:#14af14;  text-align:center;"
+	}
+	else if( sum < 200 && sum >= 100){
+		result.style="background:#b5cb03;  text-align:center;"
+	}
+	else{
+		result.style="background:#d50505;  text-align:center;"
+	}
+
+	}
+)
+
+</script>
