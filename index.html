@@ -199,7 +199,8 @@
       text-transform: uppercase;
     }
 
-    .field input {
+    .field input,
+    .field select {
       width: 100%;
       min-height: 40px;
       border: 1px solid var(--line-strong);
@@ -207,6 +208,10 @@
       padding: 8px 10px;
       color: var(--ink);
       background: #fff;
+    }
+
+    .field--wide {
+      min-width: 300px;
     }
 
     .btn {
@@ -598,8 +603,17 @@
           <label for="reviewerName">Reviewer</label>
           <input id="reviewerName" type="text" placeholder="Name or team">
         </div>
+        <div class="field field--wide">
+          <label for="savedAssessments">Saved results</label>
+          <select id="savedAssessments">
+            <option value="">No saved results yet</option>
+          </select>
+        </div>
       </div>
       <div class="toolbar__group">
+        <button class="btn" type="button" id="saveResultBtn">Save result</button>
+        <button class="btn" type="button" id="loadResultBtn">Load</button>
+        <button class="btn" type="button" id="deleteResultBtn">Delete</button>
         <button class="btn" type="button" id="selectAllBtn">Select all</button>
         <button class="btn" type="button" id="clearBtn">Clear</button>
         <button class="btn btn--primary" type="button" id="printBtn">Print PDF</button>
@@ -714,6 +728,7 @@
     ];
 
     const storageKey = "aws-security-checklist-v2";
+    const savedResultsKey = "aws-security-checklist-saved-results-v1";
     const body = document.querySelector("#checklistBody");
     const scoreValue = document.querySelector("#scoreValue");
     const scorePoints = document.querySelector("#scorePoints");
@@ -725,6 +740,7 @@
     const assessmentLevel = document.querySelector("#assessmentLevel");
     const accountName = document.querySelector("#accountName");
     const reviewerName = document.querySelector("#reviewerName");
+    const savedAssessments = document.querySelector("#savedAssessments");
     const printAccount = document.querySelector("#printAccount");
     const printReviewer = document.querySelector("#printReviewer");
     const printDate = document.querySelector("#printDate");
@@ -776,6 +792,82 @@
       } catch (error) {
         return {};
       }
+    }
+
+    function loadSavedResults() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(savedResultsKey));
+        return Array.isArray(saved) ? saved : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveSavedResults(results) {
+      localStorage.setItem(savedResultsKey, JSON.stringify(results));
+    }
+
+    function getCurrentSnapshot() {
+      const checked = Array.from(document.querySelectorAll("input[type='checkbox']")).map((box) => box.checked);
+      const earned = checked.reduce((total, isChecked, index) => isChecked ? total + items[index].score : total, 0);
+      const percent = maxScore ? Math.round((earned / maxScore) * 100) : 0;
+      return {
+        id: `assessment-${Date.now()}`,
+        savedAt: new Date().toISOString(),
+        checked,
+        accountName: accountName.value,
+        reviewerName: reviewerName.value,
+        earned,
+        percent,
+        maxScore,
+        totalControls: items.length,
+        completedControls: checked.filter(Boolean).length
+      };
+    }
+
+    function getSnapshotName(snapshot) {
+      const account = snapshot.accountName.trim() || "AWS account";
+      const reviewer = snapshot.reviewerName.trim();
+      const date = new Date(snapshot.savedAt).toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      });
+      return `${account} - ${snapshot.percent}% - ${date}${reviewer ? ` - ${reviewer}` : ""}`;
+    }
+
+    function renderSavedResults(selectedId = "") {
+      const saved = loadSavedResults();
+      savedAssessments.innerHTML = "";
+
+      if (!saved.length) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "No saved results yet";
+        savedAssessments.append(option);
+        savedAssessments.disabled = true;
+        return;
+      }
+
+      savedAssessments.disabled = false;
+      saved.forEach((snapshot) => {
+        const option = document.createElement("option");
+        option.value = snapshot.id;
+        option.textContent = getSnapshotName(snapshot);
+        savedAssessments.append(option);
+      });
+      savedAssessments.value = selectedId || saved[0].id;
+    }
+
+    function applySnapshot(snapshot) {
+      accountName.value = snapshot.accountName || "";
+      reviewerName.value = snapshot.reviewerName || "";
+      document.querySelectorAll("input[type='checkbox']").forEach((box, index) => {
+        box.checked = Boolean(snapshot.checked && snapshot.checked[index]);
+      });
+      updateScore();
     }
 
     function saveState() {
@@ -835,6 +927,7 @@
 
     renderChecklist();
     restoreState();
+    renderSavedResults();
     updateScore();
 
     document.querySelector("#selectAllBtn").addEventListener("click", () => {
@@ -851,6 +944,30 @@
       accountName.value = "";
       reviewerName.value = "";
       updateScore();
+    });
+
+    document.querySelector("#saveResultBtn").addEventListener("click", () => {
+      const snapshot = getCurrentSnapshot();
+      const saved = loadSavedResults();
+      saved.unshift(snapshot);
+      saveSavedResults(saved.slice(0, 20));
+      renderSavedResults(snapshot.id);
+    });
+
+    document.querySelector("#loadResultBtn").addEventListener("click", () => {
+      const selectedId = savedAssessments.value;
+      const snapshot = loadSavedResults().find((result) => result.id === selectedId);
+      if (snapshot) {
+        applySnapshot(snapshot);
+      }
+    });
+
+    document.querySelector("#deleteResultBtn").addEventListener("click", () => {
+      const selectedId = savedAssessments.value;
+      if (!selectedId) return;
+      const saved = loadSavedResults().filter((result) => result.id !== selectedId);
+      saveSavedResults(saved);
+      renderSavedResults();
     });
 
     document.querySelector("#printBtn").addEventListener("click", () => {
